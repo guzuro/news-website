@@ -1,8 +1,12 @@
 ---
+import { Icon } from 'astro-icon'
 ---
 
-<section class="bg-black h-80">
-  <div class="px-10 h-full pt-10">
+<section
+  style=`background-image:url(${'https://cdn.theatlantic.com/media/mt/science/cat_caviar.jpg'})`
+  class="bg-cover bg-center h-80"
+>
+  <div class="px-10 h-full pt-10 relative z-20 bg-black/75">
     <div
       class="max-w-fit ease-in duration-200 bg-teal-500 px-2 py-0.5 text-sm rounded-tr-xl rounded-bl-xl hover:rounded-none cursor-pointer"
     >
@@ -12,7 +16,7 @@
       <a
         class="hover:text-teal-500 ease-in duration-200"
         href=""
-        >123 wq ejhw</a
+        >Lorem, ipsum dolor.</a
       >
     </h2>
     <div class="mt-5">
@@ -20,12 +24,26 @@
       consequuntur perspiciatis esse. Obcaecati, eius.
     </div>
     <div class="mt-5 flex flex-row items-center justify-between md:flex-col md:items-start">
-      <div class="text-sm">date w/ icon</div>
-
-      <button
-        class="md:mt-5 bg-teal-500 py-1 px-3 hover:bg-white hover:text-teal-500 transition-all"
-        >read more</button
+      <div class="flex items-center gap-2">
+        <Icon
+          class="w-4 h-4"
+          pack="mdi"
+          name="calendar"
+        />
+        06/07/2023
+      </div>
+      <a
+        class="button cursor-pointer relative overflow-hidden bg-teal-500 transition-all hover:bg-white md:mt-5 py-1 px-3 group"
       >
+        <span
+          class="w-0 h-0 bg-white absolute bottom-0 left-0 ease-out duration-500 transition-all group-hover:w-full group-hover:h-full -z-1"
+        ></span>
+        <span
+          class="w-full relative text-white transition-colors duration-300 ease-in-out group-hover:text-teal-500 z-10"
+        >
+          read more
+        </span>
+      </a>
     </div>
   </div>
 </section>
