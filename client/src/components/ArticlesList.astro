@@ -1,0 +1,30 @@
+---
+import ArticleCard from './ArticleCard.astro'
+import Container from './Container.astro'
+const articles = [
+  {
+    title: '11111111',
+    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, pariatur.'
+  },
+  {
+    title: '2222222',
+    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, pariatur.'
+  },
+  {
+    title: '333333333',
+    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, pariatur.'
+  }
+]
+---
+
+<Container>
+  <ul class="flex flex-col md:flex-row gap-2">
+    {
+      articles.map((article) => (
+        <li class="w-full md:w-1/3">
+          <ArticleCard article={article} />{' '}
+        </li>
+      ))
+    }
+  </ul>
+</Container>
