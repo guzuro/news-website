@@ -1,13 +1,16 @@
 ---
+import Container from './Container.astro'
 ---
 
 <header class="bg-gray-600 fixed right-0 left-0 z-50">
-  <div class="flex justify-between px-10 py-5">
-    <div>logo</div>
-    <ul class="flex gap-5">
-      <li>item 1</li>
-      <li>item 2</li>
-      <li>item 3</li>
-    </ul>
-  </div>
+  <Container>
+    <div class="flex justify-between py-5">
+      <div>logo</div>
+      <ul class="flex gap-5">
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+      </ul>
+    </div>
+  </Container>
 </header>
