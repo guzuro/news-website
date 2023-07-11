@@ -1,6 +1,15 @@
 ---
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
+
+export interface Props {
+  title: string
+  description?: string
+  meta?: string
+  ogImage?: string
+}
+
+const { title, description, meta, ogImage } = Astro.props
 ---
 
 <html
@@ -17,7 +26,9 @@ import Footer from '../components/Footer.astro'
       name="generator"
       content={Astro.generator}
     />
-    <title>Document</title>
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    <meta name="keywords" content={meta}>
   </head>
   <body class="h-full flex flex-col text-white">
     <Header />
