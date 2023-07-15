@@ -1,9 +1,39 @@
 ---
+import CategoryTags from './CategoryTags.astro'
+
 const { article } = Astro.props
 ---
 
-<div class="card">
-    {article.title}
-    <br />
-    {article.description}
+<div class="card bg-gray-700 rounded-md">
+  <img
+    class="w-full h-52 object-cover"
+    src="https://cdn.stocksnap.io/img-thumbs/960w/abstract-shapes_DORCKM4UJQ.jpg"
+    alt=""
+  />
+
+  <div class="card__content px-5 pt-5">
+    <CategoryTags category={article.category} />
+
+    <h4 class="card__title font-semibold text-2xl mt-2">
+      {article.title}
+    </h4>
+    <p class="card__description mt-2">
+      {article.description}
+    </p>
+  </div>
+
+  <div class="card__link text-center mt-2">
+    <a
+      class="w-full block button cursor-pointer relative overflow-hidden bg-teal-500 transition-all hover:bg-white md:mt-5 py-1 px-3 group"
+    >
+      <span
+        class="w-0 h-0 bg-white absolute bottom-0 left-0 ease-out duration-500 transition-all group-hover:w-full group-hover:h-full -z-1"
+      ></span>
+      <span
+        class="w-full relative text-white transition-colors duration-300 ease-in-out group-hover:text-teal-500 z-10"
+      >
+        read more
+      </span>
+    </a>
+  </div>
 </div>

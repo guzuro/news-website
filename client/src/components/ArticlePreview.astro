@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon'
 import Container from './Container.astro'
+import CategoryTags from './CategoryTags.astro'
 ---
 
 <section
@@ -9,11 +10,8 @@ import Container from './Container.astro'
 >
   <div class="h-full pt-10 relative z-20 bg-black/75">
     <Container>
-      <div
-        class="max-w-fit ease-in duration-200 bg-teal-500 px-2 py-0.5 text-sm rounded-tr-xl rounded-bl-xl hover:rounded-none cursor-pointer"
-      >
-        tech
-      </div>
+      <CategoryTags category={[{ title: 'cat1' }, { title: 'cat2' }]} />
+
       <h2 class="mt-5 font-semibold text-2xl">
         <a
           class="hover:text-teal-500 ease-in duration-200"
@@ -21,10 +19,10 @@ import Container from './Container.astro'
           >Lorem, ipsum dolor.</a
         >
       </h2>
-      <div class="mt-5">
+      <p class="mt-5">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sint a magnam laborum commodi
         iure consequuntur perspiciatis esse. Obcaecati, eius.
-      </div>
+      </p>
       <div class="mt-5 flex flex-row items-center justify-between md:flex-col md:items-start">
         <div class="flex items-center gap-2">
           <Icon
@@ -32,7 +30,7 @@ import Container from './Container.astro'
             pack="mdi"
             name="calendar"
           />
-          06/07/2023
+          <span> 06/07/2023</span>
         </div>
         <a
           class="button cursor-pointer relative overflow-hidden bg-teal-500 transition-all hover:bg-white md:mt-5 py-1 px-3 group"
