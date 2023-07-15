@@ -1,7 +1,6 @@
 ---
 import { Icon } from 'astro-icon'
 import Container from './Container.astro'
-import CategoryTags from './CategoryTags.astro'
 ---
 
 <section
@@ -10,8 +9,6 @@ import CategoryTags from './CategoryTags.astro'
 >
   <div class="h-full pt-10 relative z-20 bg-black/75">
     <Container>
-      <CategoryTags category={[{ title: 'cat1' }, { title: 'cat2' }]} />
-
       <h2 class="mt-5 font-semibold text-2xl">
         <a
           class="hover:text-teal-500 ease-in duration-200"
