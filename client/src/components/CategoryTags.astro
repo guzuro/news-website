@@ -1,0 +1,13 @@
+---
+const { category } = Astro.props
+---
+
+<ul class="flex gap-2 overflow-auto">
+  {
+    category.map((c: any) => (
+      <div class="ease-in duration-200 bg-teal-500 px-2 py-0.5 text-sm rounded-tr-xl rounded-bl-xl hover:rounded-none cursor-pointer">
+        {c.title}
+      </div>
+    ))
+  }
+</ul>
