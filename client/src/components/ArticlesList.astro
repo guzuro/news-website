@@ -1,37 +1,20 @@
 ---
+import { baseApi } from '../logic/BaseApi'
 import ArticleCard from './ArticleCard.astro'
 import Container from './Container.astro'
 
-const articles = [
-  {
-    title: '11111111',
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, pariatur.',
-    category: [{ title: 'first' }, { title: 'second' }]
-  },
-  {
-    title: '2222222',
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, pariatur.',
-    category: [{ title: 'first' }, { title: 'second' }]
-  },
-  {
-    title: '333333333',
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, pariatur.',
-    category: [{ title: 'first' }, { title: 'second' }, { title: 'first' }, { title: 'second' }]
-  },
-  {
-    title: '333333333',
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, pariatur.',
-    category: [{ title: 'first' }, { title: 'second' }, { title: 'first' }, { title: 'second' }]
-  }
-]
+const data = await baseApi('articles', {
+  'populate[0]': 'categories',
+  'populate[1]': 'cover_image'
+})
 ---
 
 <Container>
   <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-16">
     {
-      articles.map((article) => (
+      data.map((article: any) => (
         <li class="w-full">
-          <ArticleCard article={article} />{' '}
+          <ArticleCard article={article.attributes} />
         </li>
       ))
     }
