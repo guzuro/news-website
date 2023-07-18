@@ -12,7 +12,7 @@ const { article } = Astro.props
   />
   <div class="bg-black/75 z-21 relative md:bg-transparent md:z-0">
     <div class="card__content px-5 py-5 md:pb-0">
-      <CategoryTags category={article.category} />
+      <CategoryTags categories={article.categories} />
 
       <h4 class="card__title font-semibold text-2xl mt-2">
         {article.title}
@@ -25,15 +25,16 @@ const { article } = Astro.props
 
   <div class="card__link text-center md:mt-2">
     <a
-      class="w-full block button cursor-pointer relative overflow-hidden bg-teal-500 transition-all hover:bg-white py-1 px-3 group"
+      class="w-full block button cursor-pointer relative overflow-hidden bg-teal-600 transition-all hover:bg-white py-1 px-3 group"
+      href={`/article/${article.slug}`}
     >
       <span
         class="w-0 h-0 bg-white absolute bottom-0 left-0 ease-out duration-500 transition-all group-hover:w-full group-hover:h-full -z-1"
       ></span>
       <span
-        class="w-full relative text-white transition-colors duration-300 ease-in-out group-hover:text-teal-500 z-10"
+        class="w-full relative text-white transition-colors duration-300 ease-in-out group-hover:text-teal-600 z-10"
       >
-        read more
+        Read more
       </span>
     </a>
   </div>
