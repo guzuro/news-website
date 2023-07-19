@@ -24,7 +24,7 @@
     "description": {
       "type": "string",
       "required": true,
-      "maxLength": 250,
+      "maxLength": 150,
       "unique": false,
       "minLength": 100
     },
@@ -42,12 +42,12 @@
       "required": true
     },
     "cover_image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }
