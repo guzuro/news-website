@@ -1,0 +1,16 @@
+---
+import Container from './Container.astro'
+
+const { coverImagePath } = Astro.props
+---
+
+<section
+  style=`background-image:url(http://localhost:1337${ coverImagePath })`
+  class="bg-cover bg-center h-80"
+>
+  <div class="h-full pt-10 relative z-20 bg-black/75">
+    <Container>
+      <slot />
+    </Container>
+  </div>
+</section>
