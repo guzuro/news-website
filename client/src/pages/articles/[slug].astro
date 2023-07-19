@@ -46,5 +46,5 @@ const { article } = Astro.props
       </div>
     </div>
   </ArticlePreviewWrapper>
-  {marked.parse(article.attributes.text)}
+  <div set:html={marked.parse(article.attributes.text)} />
 </Layout>
