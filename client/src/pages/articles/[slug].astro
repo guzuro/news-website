@@ -1,9 +1,50 @@
 ---
-export function getStaticPaths() {
-  return [{ params: { slug: 'qwe' } }]
+import ArticlePreviewWrapper from '../../components/ArticlePreviewWrapper.astro'
+import CategoryTags from '../../components/CategoryTags.astro'
+import Layout from '../../layouts/Layout.astro'
+import { baseApi } from '../../logic/BaseApi'
+import { Icon } from 'astro-icon'
+import { marked } from 'marked'
+
+export async function getStaticPaths() {
+  const data = await baseApi('articles', {
+    'populate[0]': 'categories',
+    'populate[1]': 'cover_image'
+  })
+
+  return data.map((article: any) => {
+    return {
+      params: { slug: article.attributes.slug },
+      props: { article }
+    }
+  })
 }
 
-const { slug } = Astro.params
+const { article } = Astro.props
 ---
 
-<div>Good slug {slug}!</div>
+<Layout title={article.attributes.title}>
+  <ArticlePreviewWrapper
+    coverImagePath={article.attributes.cover_image.data.attributes.formats.thumbnail.url}
+  >
+    <h1 class="mt-5 font-semibold text-2xl text-teal-500">
+      {article.attributes.title}
+    </h1>
+    <p class="mt-5">
+      {article.attributes.description}
+    </p>
+    <div class="mt-5 flex flex-row items-center justify-between md:items-start">
+      <CategoryTags categories={article.attributes.categories} />
+
+      <div class="flex items-center gap-2">
+        <Icon
+          class="w-4 h-4"
+          pack="mdi"
+          name="calendar"
+        />
+        <span> 06/07/2023</span>
+      </div>
+    </div>
+  </ArticlePreviewWrapper>
+  {marked.parse(article.attributes.text)}
+</Layout>
