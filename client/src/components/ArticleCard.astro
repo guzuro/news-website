@@ -4,17 +4,17 @@ import CategoryTags from './CategoryTags.astro'
 const { article } = Astro.props
 ---
 
-<div class="card bg-gray-700 rounded-md relative overflow-hidden">
+<div class="card h-full bg-gray-700 flex flex-col rounded-md relative overflow-hidden">
   <img
     class="w-full h-52 object-cover absolute md:relative"
     src={`http://localhost:1337${article.cover_image.data.attributes.formats.thumbnail.url}`}
     alt=""
   />
-  <div class="bg-black/75 z-21 relative md:bg-transparent md:z-0">
-    <div class="card__content px-5 py-5 md:pb-0">
+  <div class="bg-black/75 flex-1 z-21 relative md:bg-transparent md:z-0">
+    <div class="card__content px-5 py-5 md:pb-0 h-full flex flex-col">
       <CategoryTags categories={article.categories} />
 
-      <h4 class="card__title font-semibold text-2xl mt-2">
+      <h4 class="card__title mt-auto font-semibold text-2xl">
         {article.title}
       </h4>
       <p class="card__description mt-2">
