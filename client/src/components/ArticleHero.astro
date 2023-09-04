@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon'
 import ArticleHeroWrapper from './ArticleHeroWrapper.astro'
+import FormatedDate from './FormatedDate.astro'
 ---
 
 <ArticleHeroWrapper class:list={'text-center'}>
@@ -16,14 +17,8 @@ import ArticleHeroWrapper from './ArticleHeroWrapper.astro'
     consequuntur perspiciatis esse. Obcaecati, eius.
   </p>
   <div class="mt-5 flex flex-row items-center justify-between md:flex-col md:items-start">
-    <div class="flex items-center gap-2">
-      <Icon
-        class="w-4 h-4"
-        pack="mdi"
-        name="calendar"
-      />
-      <span> 06/07/2023</span>
-    </div>
+    <FormatedDate />
+
     <a
       class="button cursor-pointer relative overflow-hidden bg-teal-500 transition-all hover:bg-white md:mt-5 py-1 px-3 group"
     >

@@ -1,0 +1,23 @@
+---
+import Icon from 'astro-icon'
+import dayjs from 'dayjs'
+import localizedFormat from 'dayjs/plugin/localizedFormat'
+
+const { date } = Astro.props
+
+dayjs.extend(localizedFormat)
+
+const format = dayjs(date).format('LL')
+---
+
+<div class="flex items-center gap-2">
+  <Icon
+    class="w-4 h-4"
+    pack="mdi"
+    name="calendar"
+  />
+
+  <span class="formated-date">
+    {format}
+  </span>
+</div>
