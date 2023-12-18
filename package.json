@@ -1,0 +1,8 @@
+{
+    "name": "news-website",
+    "version": "1.0.0",
+    "scripts": {
+      "copyTypes": "node copyTypes.js"
+    },
+    "license": "MIT"
+  }
