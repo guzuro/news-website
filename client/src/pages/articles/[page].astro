@@ -15,23 +15,27 @@ const pageSize = 1
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 
-  const data = await baseApi('articles', {
+  const data = await baseApi<Array<ApiArticleArticle>>('articles', {
   'populate[0]': 'categories',
   'populate[1]': 'cover_image'
-}) as Array<ApiArticleArticle>
+})
 
   return paginate(data, { pageSize: 1 });
 }
-// All paginated data is passed on the "page" prop
+
 const { page } = Astro.props;
+
 ---
 
 <Layout title="Welcome to Astro.">
   <ArticleHero />
-  <ArticlesList data={page.data}/>
 
-  <Pagination perPage={pageSize} total={page.total} pattern='/articles/{}'/>
+  <ArticlesList data={page.data}/>
+ 
+  <Pagination
+    total={page.total} 
+    pattern='/articles/{}'
+    currentPage={page.currentPage}
+  />
 
 </Layout>
-
-<style></style>

@@ -1,14 +1,21 @@
 ---
 interface Props {
     total: number
-    perPage: number
     pattern: string
+    currentPage: number
 }
 
-const { total, perPage, pattern } = Astro.props
-const pagesCount = total / perPage
+const { total, pattern, currentPage} = Astro.props
 
-const numList = Array.from({length: pagesCount}, (v, k) => k+1)
+let numList: number[] = []
+let l = currentPage - 2
+const r = currentPage + 2
+
+for (let index = 1; index <= total; index++) {
+    if (index >= l && index <= r) {
+        numList.push(index)
+    }
+}
 
 function urlPattern(index: number) {
     return pattern.replace("{}", index.toString())
@@ -17,22 +24,50 @@ function urlPattern(index: number) {
 ---
 <div class="pagination-container mt-10">
   <ul class="pagination-pages flex justify-center gap-2 mt-5">
+    { currentPage - 2 > 1 && <li data-page={currentPage + 1}>
+        <a
+            class={`rounded-md py-1 px-1 ease-out duration-500 transition-all hover:text-white hover:bg-teal-600 text-teal-600 `}
+            href={urlPattern(1)}
+        >
+        &#8606;
+        </a>
+    </li>}
+
+    {currentPage - 1 !== 0 &&<li data-page={currentPage - 1}>
+        <a
+            class={`rounded-md py-1 px-1 ease-out duration-500 transition-all hover:text-white hover:bg-teal-600 text-teal-600 `}
+            href={urlPattern(currentPage - 1)}
+        >
+        &larr;
+        </a>
+    </li>}
         {
             numList.map((i) => (
                 <li data-page={i}>
-                <a
-                    class={`rounded-md  py-1 px-4 ease-out duration-500 transition-all text-center bg-white hover:text-white hover:bg-teal-600 text-teal-600`}
-                    href={urlPattern(i)}
-                >
-                    {i}
-                </a>
-                    
+                    <a
+                        class={`rounded-md py-1 px-4 ease-out duration-500 transition-all hover:text-white hover:bg-teal-600 text-teal-600 ${currentPage === i ? 'bg-teal-600 text-white' : 'bg-white'}`}
+                        href={urlPattern(i)}
+                    >
+                        {i}
+                    </a>
                 </li>
             ))
         }
+           { currentPage !== total && <li data-page={currentPage + 1}>
+                <a
+                    class={`rounded-md py-1 px-1 ease-out duration-500 transition-all hover:text-white hover:bg-teal-600 text-teal-600 `}
+                    href={urlPattern(currentPage + 1)}
+                >
+                &rarr;	
+                </a>
+            </li>}
+                       { currentPage + 2 < total && <li data-page={currentPage + 1}>
+                        <a
+                            class={`rounded-md py-1 px-1 ease-out duration-500 transition-all hover:text-white hover:bg-teal-600 text-teal-600 `}
+                            href={urlPattern(total)}
+                        >
+                        &#8608;
+                        </a>
+                    </li>}
     </ul>
 </div>
-
-<script>
-    console.log(1);
-</script>
