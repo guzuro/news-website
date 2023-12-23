@@ -13,12 +13,12 @@ interface Props {
 }
 
 export async function getStaticPaths() {
-  const data = await baseApi('articles', {
+  const data = await baseApi<Array<ApiArticleArticle>>('articles', {
     'populate[0]': 'categories',
     'populate[1]': 'cover_image'
   })
 
-  return data.map(({attributes}: ApiArticleArticle) => {
+  return data.map(({attributes}) => {
     return {
       params: { slug: attributes.slug },
       props: { article: attributes }
