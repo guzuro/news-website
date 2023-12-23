@@ -1,0 +1,38 @@
+---
+interface Props {
+    total: number
+    perPage: number
+    pattern: string
+}
+
+const { total, perPage, pattern } = Astro.props
+const pagesCount = total / perPage
+
+const numList = Array.from({length: pagesCount}, (v, k) => k+1)
+
+function urlPattern(index: number) {
+    return pattern.replace("{}", index.toString())
+}
+
+---
+<div class="pagination-container mt-10">
+  <ul class="pagination-pages flex justify-center gap-2 mt-5">
+        {
+            numList.map((i) => (
+                <li data-page={i}>
+                <a
+                    class={`rounded-md  py-1 px-4 ease-out duration-500 transition-all text-center bg-white hover:text-white hover:bg-teal-600 text-teal-600`}
+                    href={urlPattern(i)}
+                >
+                    {i}
+                </a>
+                    
+                </li>
+            ))
+        }
+    </ul>
+</div>
+
+<script>
+    console.log(1);
+</script>
