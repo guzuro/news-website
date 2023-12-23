@@ -1,0 +1,37 @@
+---
+import type { GetStaticPathsOptions, Page } from 'astro';
+import type { ApiArticleArticle } from '../../../types/contentTypes';
+import ArticleHero from '../../components/ArticleHero.astro';
+import ArticlesList from '../../components/ArticlesList.astro'
+import Pagination from '../../components/Pagination.astro';
+import Layout from '../../layouts/Layout.astro';
+import { baseApi } from '../../logic/BaseApi';
+
+interface Props {
+  page: Page<ApiArticleArticle>
+}
+
+const pageSize = 1
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+
+  const data = await baseApi('articles', {
+  'populate[0]': 'categories',
+  'populate[1]': 'cover_image'
+}) as Array<ApiArticleArticle>
+
+  return paginate(data, { pageSize: 1 });
+}
+// All paginated data is passed on the "page" prop
+const { page } = Astro.props;
+---
+
+<Layout title="Welcome to Astro.">
+  <ArticleHero />
+  <ArticlesList data={page.data}/>
+
+  <Pagination perPage={pageSize} total={page.total} pattern='/articles/{}'/>
+
+</Layout>
+
+<style></style>
