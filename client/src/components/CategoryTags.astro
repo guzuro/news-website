@@ -5,7 +5,7 @@ const { categories } = Astro.props
 <ul class="flex gap-2 overflow-auto">
   {
     categories.data.map((c: any) => (
-      <div class="ease-in duration-200 bg-teal-600 px-2 py-0.5 text-sm rounded-tr-xl rounded-bl-xl hover:rounded-none cursor-pointer">
+      <div class="ease-in duration-200 bg-teal-600 px-2 py-0.5 text-sm rounded-tr-xl rounded-bl-xl hover:rounded-md cursor-pointer">
         {c.attributes.name}
       </div>
     ))
