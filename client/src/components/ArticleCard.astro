@@ -6,6 +6,7 @@ const { article } = Astro.props
 
 <div class="card h-full bg-gray-700 flex flex-col rounded-md relative overflow-hidden">
   <img
+    loading="lazy"
     class="w-full h-52 object-cover absolute md:relative"
     src={`http://localhost:1337${article.cover_image.data.attributes.formats.thumbnail.url}`}
     alt=""
