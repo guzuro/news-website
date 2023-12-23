@@ -1,22 +1,27 @@
 ---
+import type { ApiArticleArticle } from '../../types/contentTypes';
 import { baseApi } from '../logic/BaseApi'
 import ArticleCard from './ArticleCard.astro'
 import Container from './Container.astro'
+import Pagination from './Pagination.astro';
 
-const data = await baseApi('articles', {
-  'populate[0]': 'categories',
-  'populate[1]': 'cover_image'
-})
+interface Props {
+  data: Array<ApiArticleArticle>
+}
+
+const { data } = Astro.props
 ---
 
 <Container>
   <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-16">
     {
-      data.map((article: any) => (
+      data.map(({attributes}) => (
         <li class="w-full">
-          <ArticleCard article={article.attributes} />
+          <ArticleCard article={attributes} />
         </li>
       ))
     }
   </ul>
+
+  <!-- <Pagination perPage={5} total={30} /> -->
 </Container>
