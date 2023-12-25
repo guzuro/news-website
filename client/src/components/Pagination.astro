@@ -1,4 +1,5 @@
 ---
+import PaginationLinkItem from './PaginationLinkItem.astro'
 interface Props {
     total: number
     pattern: string
@@ -24,50 +25,55 @@ function urlPattern(index: number) {
 ---
 <div class="pagination-container mt-10">
   <ul class="pagination-pages flex justify-center gap-2 mt-5">
-    { currentPage - 2 > 1 && <li data-page={currentPage + 1}>
-        <a
-            class={`rounded-md py-1 px-1 ease-out duration-500 transition-all hover:text-white hover:bg-teal-600 text-teal-600 `}
-            href={urlPattern(1)}
-        >
-        &#8606;
-        </a>
-    </li>}
+    {
+        currentPage - 2 > 1 &&
+        <li data-page={1}>
+            <PaginationLinkItem 
+                href={urlPattern(1)}
+                title='&#8606;'
+            /> 
+        </li> 
+    }
 
-    {currentPage - 1 !== 0 &&<li data-page={currentPage - 1}>
-        <a
-            class={`rounded-md py-1 px-1 ease-out duration-500 transition-all hover:text-white hover:bg-teal-600 text-teal-600 `}
-            href={urlPattern(currentPage - 1)}
-        >
-        &larr;
-        </a>
-    </li>}
-        {
+    {
+        currentPage - 1 !== 0 &&
+        <li data-page={1}>
+            <PaginationLinkItem 
+                href={urlPattern(currentPage - 1)}
+                title='&larr;'
+            /> 
+        </li>
+    }
+    
+    {
             numList.map((i) => (
                 <li data-page={i}>
-                    <a
-                        class={`rounded-md py-1 px-4 ease-out duration-500 transition-all hover:text-white hover:bg-teal-600 text-teal-600 ${currentPage === i ? 'bg-teal-600 text-white' : 'bg-white'}`}
-                        href={urlPattern(i)}
-                    >
-                        {i}
-                    </a>
+                    <PaginationLinkItem 
+                        href={urlPattern(i)} 
+                        title={i.toString()} 
+                        class:list={[ currentPage === i ? 'bg-teal-600 text-white' : 'bg-white' ]}
+                    /> 
                 </li>
             ))
+    }
+    
+    {
+        currentPage !== total && 
+        <li data-page={currentPage + 1}>
+            <PaginationLinkItem 
+                href={urlPattern(currentPage + 1)}
+                title='&rarr;'
+            /> 
+        </li>
+    }
+                       { currentPage + 2 < total && 
+                       
+                       <li data-page={total}>
+            <PaginationLinkItem 
+                href={urlPattern(total)}
+                title='&#8608;'
+            /> 
+        </li>
         }
-           { currentPage !== total && <li data-page={currentPage + 1}>
-                <a
-                    class={`rounded-md py-1 px-1 ease-out duration-500 transition-all hover:text-white hover:bg-teal-600 text-teal-600 `}
-                    href={urlPattern(currentPage + 1)}
-                >
-                &rarr;	
-                </a>
-            </li>}
-                       { currentPage + 2 < total && <li data-page={currentPage + 1}>
-                        <a
-                            class={`rounded-md py-1 px-1 ease-out duration-500 transition-all hover:text-white hover:bg-teal-600 text-teal-600 `}
-                            href={urlPattern(total)}
-                        >
-                        &#8608;
-                        </a>
-                    </li>}
     </ul>
 </div>
