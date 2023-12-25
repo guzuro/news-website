@@ -1,21 +1,21 @@
 ---
-import type { ApiArticleArticle } from '../../types/contentTypes';
-import { baseApi } from '../logic/BaseApi'
-import ArticleCard from './ArticleCard.astro'
-import Container from './Container.astro'
-import Pagination from './Pagination.astro';
+import type { ApiArticleArticle } from "../../types/contentTypes";
+import { baseApi } from "../logic/BaseApi";
+import ArticleCard from "./ArticleCard.astro";
+import Container from "./Container.astro";
+import Pagination from "./Pagination.astro";
 
 interface Props {
-  data: Array<ApiArticleArticle>
+  data: Array<ApiArticleArticle>;
 }
 
-const { data } = Astro.props
+const { data } = Astro.props;
 ---
 
 <Container>
-  <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-16">
+  <ul class="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
     {
-      data.map(({attributes}) => (
+      data.map(({ attributes }) => (
         <li class="w-full">
           <ArticleCard article={attributes} />
         </li>

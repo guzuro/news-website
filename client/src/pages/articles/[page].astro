@@ -1,41 +1,38 @@
 ---
-import type { GetStaticPathsOptions, Page } from 'astro';
-import type { ApiArticleArticle } from '../../../types/contentTypes';
-import ArticleHero from '../../components/ArticleHero.astro';
-import ArticlesList from '../../components/ArticlesList.astro'
-import Pagination from '../../components/Pagination.astro';
-import Layout from '../../layouts/Layout.astro';
-import { baseApi } from '../../logic/BaseApi';
+import type { GetStaticPathsOptions, Page } from "astro";
+import type { ApiArticleArticle } from "../../../types/contentTypes";
+import ArticleHero from "../../components/ArticleHero.astro";
+import ArticlesList from "../../components/ArticlesList.astro";
+import Pagination from "../../components/Pagination.astro";
+import Layout from "../../layouts/Layout.astro";
+import { baseApi } from "../../logic/BaseApi";
 
 interface Props {
-  page: Page<ApiArticleArticle>
+  page: Page<ApiArticleArticle>;
 }
 
-const pageSize = 1
+const pageSize = 1;
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-
-  const data = await baseApi<Array<ApiArticleArticle>>('articles', {
-  'populate[0]': 'categories',
-  'populate[1]': 'cover_image'
-})
+  const data = await baseApi<Array<ApiArticleArticle>>("articles", {
+    "populate[0]": "categories",
+    "populate[1]": "cover_image",
+  });
 
   return paginate(data, { pageSize: 1 });
 }
 
 const { page } = Astro.props;
-
 ---
 
 <Layout title="Welcome to Astro.">
   <ArticleHero />
 
-  <ArticlesList data={page.data}/>
- 
+  <ArticlesList data={page.data} />
+
   <Pagination
-    total={page.total} 
-    pattern='/articles/{}'
+    total={page.total}
+    pattern="/articles/{}"
     currentPage={page.currentPage}
   />
-
 </Layout>

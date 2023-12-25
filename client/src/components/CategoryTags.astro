@@ -1,11 +1,11 @@
 ---
-const { categories } = Astro.props
+const { categories } = Astro.props;
 ---
 
 <ul class="flex gap-2 overflow-auto">
   {
     categories.data.map((c: any) => (
-      <div class="ease-in duration-200 bg-teal-600 px-2 py-0.5 text-sm rounded-tr-xl rounded-bl-xl hover:rounded-md cursor-pointer">
+      <div class="cursor-pointer rounded-bl-xl rounded-tr-xl bg-teal-600 px-2 py-0.5 text-sm duration-200 ease-in hover:rounded-md">
         {c.attributes.name}
       </div>
     ))

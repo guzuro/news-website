@@ -1,17 +1,17 @@
 ---
 interface Props {
-    href: string
-    title: string
-    class?: string
+  href: string;
+  title: string;
+  class?: string;
 }
 
-const { href, title, class: className } = Astro.props
+const { href, title, class: className } = Astro.props;
 ---
 
 <a
-    class="rounded-md py-1 px-4 ease-out duration-500 transition-all hover:text-white hover:bg-teal-600 text-teal-600"
-    class:list={[ className ]}
-    href={href}
+  class="rounded-md px-4 py-1 text-teal-600 transition-all duration-500 ease-out hover:bg-teal-600 hover:text-white"
+  class:list={[className]}
+  href={href}
 >
-    {title}
+  {title}
 </a>

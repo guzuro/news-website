@@ -1,79 +1,73 @@
 ---
-import PaginationLinkItem from './PaginationLinkItem.astro'
+import PaginationLinkItem from "./PaginationLinkItem.astro";
 interface Props {
-    total: number
-    pattern: string
-    currentPage: number
+  total: number;
+  pattern: string;
+  currentPage: number;
 }
 
-const { total, pattern, currentPage} = Astro.props
+const { total, pattern, currentPage } = Astro.props;
 
-let numList: number[] = []
-let l = currentPage - 2
-const r = currentPage + 2
+let numList: number[] = [];
+let l = currentPage - 2;
+const r = currentPage + 2;
 
 for (let index = 1; index <= total; index++) {
-    if (index >= l && index <= r) {
-        numList.push(index)
-    }
+  if (index >= l && index <= r) {
+    numList.push(index);
+  }
 }
 
 function urlPattern(index: number) {
-    return pattern.replace("{}", index.toString())
+  return pattern.replace("{}", index.toString());
 }
-
 ---
+
 <div class="pagination-container mt-10">
-  <ul class="pagination-pages flex justify-center gap-2 mt-5">
+  <ul class="pagination-pages mt-5 flex justify-center gap-2">
     {
-        currentPage - 2 > 1 &&
+      currentPage - 2 > 1 && (
         <li data-page={1}>
-            <PaginationLinkItem 
-                href={urlPattern(1)}
-                title='&#8606;'
-            /> 
-        </li> 
+          <PaginationLinkItem href={urlPattern(1)} title="<<" />
+        </li>
+      )
     }
 
     {
-        currentPage - 1 !== 0 &&
+      currentPage - 1 !== 0 && (
         <li data-page={1}>
-            <PaginationLinkItem 
-                href={urlPattern(currentPage - 1)}
-                title='&larr;'
-            /> 
+          <PaginationLinkItem href={urlPattern(currentPage - 1)} title="<" />
         </li>
+      )
     }
-    
+
     {
-            numList.map((i) => (
-                <li data-page={i}>
-                    <PaginationLinkItem 
-                        href={urlPattern(i)} 
-                        title={i.toString()} 
-                        class:list={[ currentPage === i ? 'bg-teal-600 text-white' : 'bg-white' ]}
-                    /> 
-                </li>
-            ))
+      numList.map(i => (
+        <li data-page={i}>
+          <PaginationLinkItem
+            href={urlPattern(i)}
+            title={i.toString()}
+            class:list={[
+              currentPage === i ? "bg-teal-600 text-white" : "bg-white",
+            ]}
+          />
+        </li>
+      ))
     }
-    
+
     {
-        currentPage !== total && 
+      currentPage !== total && (
         <li data-page={currentPage + 1}>
-            <PaginationLinkItem 
-                href={urlPattern(currentPage + 1)}
-                title='&rarr;'
-            /> 
+          <PaginationLinkItem href={urlPattern(currentPage + 1)} title=">" />
         </li>
+      )
     }
-                       { currentPage + 2 < total && 
-                       
-                       <li data-page={total}>
-            <PaginationLinkItem 
-                href={urlPattern(total)}
-                title='&#8608;'
-            /> 
+    {
+      currentPage + 2 < total && (
+        <li data-page={total}>
+          <PaginationLinkItem href={urlPattern(total)} title=">>" />
         </li>
-        }
-    </ul>
+      )
+    }
+  </ul>
 </div>
