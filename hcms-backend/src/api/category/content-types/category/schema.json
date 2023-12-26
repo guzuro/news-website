@@ -16,12 +16,6 @@
       "type": "string",
       "required": true
     },
-    "article": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::article.article",
-      "inversedBy": "categories"
-    },
     "slug": {
       "type": "uid",
       "targetField": "name"

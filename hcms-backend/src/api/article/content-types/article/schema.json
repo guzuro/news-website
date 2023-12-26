@@ -15,8 +15,7 @@
     "categories": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::category.category",
-      "mappedBy": "article"
+      "target": "api::category.category"
     },
     "title": {
       "type": "string"
