@@ -8,7 +8,6 @@ interface Props {
 
 const { title, slug } = Astro.props;
 ---
-
-<a href={urlPattern("/category{}/articles", slug)}>
+<a href={urlPattern("/category/{}/articles/1", slug)}>
   {title}
 </a>
