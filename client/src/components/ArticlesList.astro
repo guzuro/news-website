@@ -1,9 +1,7 @@
 ---
 import type { ApiArticleArticle } from "../../types/contentTypes";
-import { baseApi } from "../logic/BaseApi";
 import ArticleCard from "./ArticleCard.astro";
 import Container from "./Container.astro";
-import Pagination from "./Pagination.astro";
 
 interface Props {
   data: Array<ApiArticleArticle>;
@@ -22,6 +20,4 @@ const { data } = Astro.props;
       ))
     }
   </ul>
-
-  <!-- <Pagination perPage={5} total={30} /> -->
 </Container>
