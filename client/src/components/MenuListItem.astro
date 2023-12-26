@@ -1,0 +1,14 @@
+---
+import urlPattern from "../helpers/urlPattern";
+
+interface Props {
+  title: string;
+  slug: string;
+}
+
+const { title, slug } = Astro.props;
+---
+
+<a href={urlPattern("/category{}/articles", slug)}>
+  {title}
+</a>

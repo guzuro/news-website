@@ -1,0 +1,74 @@
+---
+import type { ApiCategoryCategory } from "../../types/contentTypes";
+import { baseApi } from "../logic/BaseApi";
+import MenuListItem from "./MenuListItem.astro";
+
+const data = await baseApi<Array<ApiCategoryCategory>>("categories", {
+});
+
+console.log(data);
+---
+
+<div class="menu">
+  <div class="menu__wrapper">
+    <ul class="menu__list">
+      {
+        data.map(({ attributes }) => (
+          <MenuListItem title={attributes.name} slug={attributes.slug} />
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="menu__burger relative z-10 block cursor-pointer transition-all">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<script>
+  const burger = document.querySelector(".menu__burger");
+  const menu = document.querySelector(".menu__wrapper");
+
+  function onBurgerClick(params: Event) {
+    if (burger && menu) {
+      const { classList: bCList } = burger;
+      const { classList: mCList } = menu;
+
+      if (bCList.contains("active")) {
+        bCList.remove("active");
+        mCList.remove("active");
+      } else {
+        bCList.add("active");
+        mCList.add("active");
+      }
+    }
+  }
+
+  if (burger) {
+    burger.addEventListener("click", onBurgerClick);
+  }
+</script>
+
+<style>
+  .menu__wrapper {
+    @apply fixed -top-full left-0 h-full w-full bg-gray-600 transition-all;
+  }
+
+  .menu__wrapper.active {
+    @apply top-0;
+  }
+
+  .menu__list {
+    @apply flex h-full flex-col items-center justify-center;
+  }
+
+  .menu__burger span {
+    @apply mb-2 block h-[3px] w-10 bg-white transition-all last:mb-0;
+  }
+
+  .menu__burger.active span {
+    @apply scale-0 first:top-3 first:rotate-45 first:scale-100 last:bottom-3 last:-rotate-45 last:scale-100;
+  }
+</style>
