@@ -13,7 +13,7 @@ const { categories } = Astro.props;
   {
     categories.data.map(({ attributes }) => (
       <div class="cursor-pointer rounded-bl-xl rounded-tr-xl bg-teal-600 px-2 py-0.5 text-sm duration-200 ease-in hover:rounded-md">
-        <a href={urlPattern("/category/{}/articles", attributes.slug)}>
+        <a href={urlPattern("/category/{}/articles/1", attributes.slug)}>
           {attributes.name}
         </a>
       </div>
