@@ -1,5 +1,7 @@
 ---
 import PaginationLinkItem from "./PaginationLinkItem.astro";
+import urlPattern from "../helpers/urlPattern";
+
 interface Props {
   total: number;
   pattern: string;
@@ -17,10 +19,6 @@ for (let index = 1; index <= total; index++) {
     numList.push(index);
   }
 }
-
-function urlPattern(index: number) {
-  return pattern.replace("{}", index.toString());
-}
 ---
 
 <div class="pagination-container mt-10">
@@ -28,7 +26,7 @@ function urlPattern(index: number) {
     {
       currentPage - 2 > 1 && (
         <li data-page={1}>
-          <PaginationLinkItem href={urlPattern(1)} title="<<" />
+          <PaginationLinkItem href={urlPattern(pattern, 1)} title="<<" />
         </li>
       )
     }
@@ -36,7 +34,10 @@ function urlPattern(index: number) {
     {
       currentPage - 1 !== 0 && (
         <li data-page={1}>
-          <PaginationLinkItem href={urlPattern(currentPage - 1)} title="<" />
+          <PaginationLinkItem
+            href={urlPattern(pattern, currentPage - 1)}
+            title="<"
+          />
         </li>
       )
     }
@@ -45,7 +46,7 @@ function urlPattern(index: number) {
       numList.map(i => (
         <li data-page={i}>
           <PaginationLinkItem
-            href={urlPattern(i)}
+            href={urlPattern(pattern, i)}
             title={i.toString()}
             class:list={[
               currentPage === i ? "bg-teal-600 text-white" : "bg-white",
@@ -58,14 +59,17 @@ function urlPattern(index: number) {
     {
       currentPage !== total && (
         <li data-page={currentPage + 1}>
-          <PaginationLinkItem href={urlPattern(currentPage + 1)} title=">" />
+          <PaginationLinkItem
+            href={urlPattern(pattern, currentPage + 1)}
+            title=">"
+          />
         </li>
       )
     }
     {
       currentPage + 2 < total && (
         <li data-page={total}>
-          <PaginationLinkItem href={urlPattern(total)} title=">>" />
+          <PaginationLinkItem href={urlPattern(pattern, total)} title=">>" />
         </li>
       )
     }

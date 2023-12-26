@@ -1,12 +1,21 @@
 ---
+import type { ApiCategoryCategory } from "../../types/contentTypes";
+import urlPattern from "../helpers/urlPattern";
+
+interface Props {
+  categories: { data: Array<ApiCategoryCategory> };
+}
+
 const { categories } = Astro.props;
 ---
 
 <ul class="flex gap-2 overflow-auto">
   {
-    categories.data.map((c: any) => (
+    categories.data.map(({ attributes }) => (
       <div class="cursor-pointer rounded-bl-xl rounded-tr-xl bg-teal-600 px-2 py-0.5 text-sm duration-200 ease-in hover:rounded-md">
-        {c.attributes.name}
+        <a href={urlPattern("/category/{}/articles", attributes.slug)}>
+          {attributes.name}
+        </a>
       </div>
     ))
   }
