@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 const { article } = Astro.props;
 ---
 
-<Layout title={article.title}>
+<Layout title={article.title} description={article.description} meta={article.meta_tags}>
   <ArticleHeroWrapper
     coverImagePath={article.cover_image.data.attributes.formats.thumbnail.url}
   >

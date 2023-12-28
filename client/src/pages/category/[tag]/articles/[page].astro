@@ -53,7 +53,7 @@ const { tag } = Astro.params;
 <Layout title={tag}>
   <Container>
     <h1 class="mt-10 text-2xl">
-      Статьи <span class="text-teal-600 capitalize">{category.attributes.name}</span>
+      Articles <span class="text-teal-600 capitalize">{category.attributes.name}</span>
     </h1>
 
     <ArticlesList data={page.data} />

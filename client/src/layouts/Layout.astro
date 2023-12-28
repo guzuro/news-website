@@ -17,6 +17,9 @@ const { title, description, meta, ogImage } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={meta} />
+
     <title>{title}</title>
   </head>
   <body class="flex h-full flex-col text-white">
