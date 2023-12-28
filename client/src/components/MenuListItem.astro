@@ -8,8 +8,9 @@ interface Props {
 
 const { title, slug } = Astro.props;
 ---
+
 <a
-  class="hover:text-teal-500 capitalize text-lg"
+  class="text-lg capitalize hover:text-teal-500"
   href={urlPattern("/category/{}/articles/1", slug)}
 >
   {title}

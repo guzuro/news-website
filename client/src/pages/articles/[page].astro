@@ -6,6 +6,7 @@ import ArticlesList from "../../components/ArticlesList.astro";
 import Pagination from "../../components/Pagination.astro";
 import Layout from "../../layouts/Layout.astro";
 import { baseApi } from "../../logic/BaseApi";
+import Container from "../../components/Container.astro";
 
 interface Props {
   page: Page<ApiArticleArticle>;
@@ -28,11 +29,13 @@ const { page } = Astro.props;
 <Layout title="Welcome to Astro.">
   <ArticleHero />
 
-  <ArticlesList data={page.data} />
+  <Container>
+    <ArticlesList data={page.data} />
 
-  <Pagination
-    total={page.total}
-    pattern="/articles/{}"
-    currentPage={page.currentPage}
-  />
+    <Pagination
+      total={page.total}
+      pattern="/articles/{}"
+      currentPage={page.currentPage}
+    />
+  </Container>
 </Layout>

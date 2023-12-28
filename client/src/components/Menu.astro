@@ -3,8 +3,7 @@ import type { ApiCategoryCategory } from "../../types/contentTypes";
 import { baseApi } from "../logic/BaseApi";
 import MenuListItem from "./MenuListItem.astro";
 
-const data = await baseApi<Array<ApiCategoryCategory>>("categories", {
-});
+const data = await baseApi<Array<ApiCategoryCategory>>("categories", {});
 ---
 
 <div class="menu">
@@ -18,7 +17,7 @@ const data = await baseApi<Array<ApiCategoryCategory>>("categories", {
     </ul>
   </div>
 
-  <div class="menu__burger  relative z-10 block cursor-pointer transition-all">
+  <div class="menu__burger relative z-10 block cursor-pointer transition-all">
     <span></span>
     <span></span>
     <span></span>
@@ -28,7 +27,7 @@ const data = await baseApi<Array<ApiCategoryCategory>>("categories", {
 <script>
   const burger = document.querySelector(".menu__burger");
   const menu = document.querySelector(".menu__wrapper");
-  const body = document.getElementsByTagName('body');
+  const body = document.getElementsByTagName("body");
 
   function onBurgerClick() {
     if (burger && menu && body) {
@@ -64,17 +63,16 @@ const data = await baseApi<Array<ApiCategoryCategory>>("categories", {
     @apply top-0 overflow-hidden;
   }
 
-
   .menu__list {
     @apply flex h-full flex-col items-center justify-center;
   }
 
   .menu__burger:hover > span {
-    @apply bg-teal-500
+    @apply bg-teal-500;
   }
 
   .menu__burger span {
-    @apply mb-2 block h-[3px] w-10 bg-white transition-all last:mb-0 ;
+    @apply mb-2 block h-[3px] w-10 bg-white transition-all last:mb-0;
   }
 
   .menu__burger.active span {

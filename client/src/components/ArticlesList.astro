@@ -1,7 +1,6 @@
 ---
 import type { ApiArticleArticle } from "../../types/contentTypes";
 import ArticleCard from "./ArticleCard.astro";
-import Container from "./Container.astro";
 
 interface Props {
   data: Array<ApiArticleArticle>;
@@ -10,14 +9,12 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<Container>
-  <ul class="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-    {
-      data.map(({ attributes }) => (
-        <li class="w-full">
-          <ArticleCard article={attributes} />
-        </li>
-      ))
-    }
-  </ul>
-</Container>
+<ul class="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+  {
+    data.map(({ attributes }) => (
+      <li class="w-full">
+        <ArticleCard article={attributes} />
+      </li>
+    ))
+  }
+</ul>
