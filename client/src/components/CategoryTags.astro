@@ -12,7 +12,7 @@ const { categories } = Astro.props;
 <ul class="flex gap-2 overflow-auto">
   {
     categories.data.map(({ attributes }) => (
-      <div class="cursor-pointer rounded-bl-xl rounded-tr-xl bg-teal-600 px-2 py-0.5 text-sm duration-200 ease-in hover:rounded-md capitalize">
+      <div class="cursor-pointer rounded-bl-xl rounded-tr-xl bg-teal-600 px-2 py-0.5 text-sm capitalize duration-200 ease-in hover:rounded-md">
         <a href={urlPattern("/category/{}/articles/1", attributes.slug)}>
           {attributes.name}
         </a>

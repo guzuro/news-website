@@ -29,7 +29,11 @@ export async function getStaticPaths() {
 const { article } = Astro.props;
 ---
 
-<Layout title={article.title} description={article.description} meta={article.meta_tags}>
+<Layout
+  title={article.title}
+  description={article.description}
+  meta={article.meta_tags}
+>
   <ArticleHeroWrapper
     coverImagePath={article.cover_image.data.attributes.formats.thumbnail.url}
   >
@@ -53,7 +57,7 @@ const { article } = Astro.props;
       >
         <div set:html={marked.parse(article.text)} />
       </div>
-      <div class="mt-5 w-full rounded-md bg-gray-600 p-10 lg:w-1/3">
+      <div class="w-full rounded-md bg-gray-600 p-10 lg:mt-5 lg:w-1/3">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
         assumenda soluta vel dolorum error! Veritatis cum a excepturi ullam
         provident vitae dicta possimus explicabo, unde sequi quia doloremque

@@ -19,7 +19,7 @@ const { title, description, meta, ogImage } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <meta name="keywords" content={meta} />
-
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
   </head>
   <body class="flex h-full flex-col text-white">
