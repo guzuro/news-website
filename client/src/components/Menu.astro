@@ -18,7 +18,7 @@ const data = await baseApi<Array<ApiCategoryCategory>>("categories", {
     </ul>
   </div>
 
-  <div class="menu__burger relative z-10 block cursor-pointer transition-all">
+  <div class="menu__burger  relative z-10 block cursor-pointer transition-all">
     <span></span>
     <span></span>
     <span></span>
@@ -28,18 +28,24 @@ const data = await baseApi<Array<ApiCategoryCategory>>("categories", {
 <script>
   const burger = document.querySelector(".menu__burger");
   const menu = document.querySelector(".menu__wrapper");
+  const body = document.getElementsByTagName('body');
 
-  function onBurgerClick(params: Event) {
-    if (burger && menu) {
-      const { classList: bCList } = burger;
+  function onBurgerClick() {
+    if (burger && menu && body) {
+      const { classList: burCList } = burger;
       const { classList: mCList } = menu;
+      const { classList: bodCList } = body[0];
 
-      if (bCList.contains("active")) {
-        bCList.remove("active");
+      if (burCList.contains("active")) {
+        burCList.remove("active");
         mCList.remove("active");
+
+        bodCList.remove("overflow-hidden");
       } else {
-        bCList.add("active");
+        burCList.add("active");
         mCList.add("active");
+
+        bodCList.add("overflow-hidden");
       }
     }
   }
@@ -55,15 +61,20 @@ const data = await baseApi<Array<ApiCategoryCategory>>("categories", {
   }
 
   .menu__wrapper.active {
-    @apply top-0;
+    @apply top-0 overflow-hidden;
   }
+
 
   .menu__list {
     @apply flex h-full flex-col items-center justify-center;
   }
 
+  .menu__burger:hover > span {
+    @apply bg-teal-500
+  }
+
   .menu__burger span {
-    @apply mb-2 block h-[3px] w-10 bg-white transition-all last:mb-0;
+    @apply mb-2 block h-[3px] w-10 bg-white transition-all last:mb-0 ;
   }
 
   .menu__burger.active span {
