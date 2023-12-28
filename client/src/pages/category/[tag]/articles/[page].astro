@@ -20,25 +20,28 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     "categories",
     {}
   );
-  const slugs = categories.map(({ attributes }) => attributes.slug);
 
-  const articlesPromises = slugs.map(slug => {
-    return baseApi<Array<ApiArticleArticle>>("articles", {
-      "?filters[username][$eq]": slug,
-      "populate[0]": "categories",
-      "populate[1]": "cover_image",
-    });
+  const allArticles = await baseApi<Array<ApiArticleArticle>>("articles", {
+    "populate[0]": "categories",
+    "populate[1]": "cover_image",
   });
 
-  const data = (await Promise.all(articlesPromises)).flat();
+  return categories.flatMap(category => {
+    const articles = allArticles.filter(({ attributes }) => {
+      const articleCategories: Array<ApiCategoryCategory> =
+        attributes.categories.data;
 
-  return data.flatMap(d => {
-    return paginate(data, {
-      pageSize: 1,
-      params: { tag: d.attributes.categories.data[0]?.attributes.slug },
+      return articleCategories.some(
+        t => t.attributes.name === category.attributes.name
+      );
+    });
+
+    return paginate(articles, {
+      params: { tag: category.attributes.slug },
       props: {
-        category: d.attributes.categories.data[0],
+        category,
       },
+      pageSize: 1,
     });
   });
 }
@@ -49,10 +52,10 @@ const { tag } = Astro.params;
 
 <Layout title={tag}>
   <Container>
-    <h1 class="text-2xl mt-10">
-    Статьи <span class="text-teal-600">{category.attributes.name}</span>
+    <h1 class="mt-10 text-2xl">
+      Статьи <span class="text-teal-600">{category.attributes.name}</span>
     </h1>
-    
+
     <ArticlesList data={page.data} />
 
     <Pagination
