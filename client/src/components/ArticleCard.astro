@@ -1,4 +1,5 @@
 ---
+import Button from "./Button.astro";
 import CategoryTags from "./CategoryTags.astro";
 
 const { article } = Astro.props;
@@ -27,18 +28,9 @@ const { article } = Astro.props;
   </div>
 
   <div class="card__link text-center md:mt-2">
-    <a
-      class="button group relative block w-full cursor-pointer overflow-hidden bg-teal-600 px-3 py-1 transition-all hover:bg-white"
+    <Button
       href={`/articles/${article.slug}`}
-    >
-      <span
-        class="-z-1 absolute bottom-0 left-0 h-0 w-0 bg-white transition-all duration-500 ease-out group-hover:h-full group-hover:w-full"
-      ></span>
-      <span
-        class="relative z-10 w-full text-white transition-colors duration-300 ease-in-out group-hover:text-teal-600"
-      >
-        Read more
-      </span>
-    </a>
+      title="Read more"
+    />
   </div>
 </div>

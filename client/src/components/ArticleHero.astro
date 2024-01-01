@@ -2,6 +2,7 @@
 import { baseApi } from "../logic/BaseApi";
 
 import ArticleHeroWrapper from "./ArticleHeroWrapper.astro";
+import Button from "./Button.astro";
 import FormatedDate from "./FormatedDate.astro";
 
 const data = await baseApi("articles", {
@@ -33,18 +34,10 @@ const article = data[0];
   >
     <FormatedDate date={article.attributes.publishedAt} />
 
-    <a
-      class="button group relative cursor-pointer overflow-hidden rounded-md bg-teal-500 px-3 py-1 transition-all hover:bg-white md:mt-5"
+    <Button
       href={`/articles/${article.attributes.slug}`}
-    >
-      <span
-        class="-z-1 absolute bottom-0 left-0 h-0 w-0 bg-white transition-all duration-500 ease-out group-hover:h-full group-hover:w-full"
-      ></span>
-      <span
-        class="relative z-10 w-full text-white transition-colors duration-300 ease-in-out group-hover:text-teal-500"
-      >
-        read more
-      </span>
-    </a>
+      title="Read more"
+      class:list={["w-auto", "rounded-md", "md:mt-5"]}
+    />
   </div>
 </ArticleHeroWrapper>
